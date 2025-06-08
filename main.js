@@ -4,7 +4,7 @@ numeroSenha.textContent = tamanhoSenha;
 const letrasMaiusculas = 'ABCDEFGHIJKLMNOPQRSTUVXYWZ';
 const letrasMinusculas = 'abcdefghijklmnopqrstuvxywz';
 const numeros = '0123456789';
-const simbolos = '!@%*?';
+const simbolos = '!@%*?#¨';
 const botoes = document.querySelectorAll('.parametro-senha__botao');
 const campoSenha = document.querySelector('#campo-senha');
 const checkbox = document.querySelectorAll('.checkbox');
@@ -15,15 +15,16 @@ botoes[1].onclick = aumentaTamanho;
 
 function diminuiTamanho() {
     if (tamanhoSenha > 1) {
-        // tamanhoSenha = tamanhoSenha-1;
+    
         tamanhoSenha--;
     }
     numeroSenha.textContent = tamanhoSenha;
     geraSenha();
 }
 function aumentaTamanho() {
+
     if (tamanhoSenha < 20) {
-        // tamanhoSenha = tamanhoSenha+1;
+        
         tamanhoSenha++;
     }
     numeroSenha.textContent = tamanhoSenha;
@@ -76,8 +77,53 @@ function classificaSenha(tamanhoAlfabeto){
     valorEntropia.textContent = "Um computador pode levar até " + Math.floor(2**entropia/(100e6*60*60*24)) + " dias para descobrir essa senha.";
 }
 
+const canvas = document.getElementById('particles-bg');
+const ctx = canvas.getContext('2d');
+let particles = [];
+
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+function createParticles(count) {
+    particles = [];
+    for (let i = 0; i < count; i++) {
+        particles.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            r: Math.random() * 1.5 + 0.5, 
+            dx: (Math.random() - 0.5) * 0.5,
+            dy: (Math.random() - 0.5) * 0.5,
+            alpha: Math.random() * 0.5 + 0.5
+        });
+    }
+}
+createParticles(100);
+
+function animateParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (let p of particles) {
+        ctx.save();
+        ctx.globalAlpha = p.alpha;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, 2 * Math.PI);
+        ctx.fillStyle = "#00BFFF";
+        ctx.fill();
+        ctx.restore();
+
+        p.x += p.dx;
+        p.y += p.dy;
 
 
+        if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+    }
+    requestAnimationFrame(animateParticles);
+}
+animateParticles();
 
 
 

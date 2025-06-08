@@ -1,13 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Edu+QLD+Hand:wght@400..700&display=swap');
 
 :root{
     --branco: white;
-    --cor-de-fundo: #00162E;
-    --fundo-senha: #00244D;
-    --fundo-texto: #001E40;
-    --borda: #0075FF;
+    --cor-de-fundo: #090225e3;
+    --fundo-senha: #201430;
+    --fundo-texto: #100a31cc;
+    --borda: #ffffff;
     --roboto: 'Roboto', sans-serif;
     --roboto-mono: 'Roboto Mono', monospace;
+    --edu-qld-hand: 'Edu QLD Hand', cursive; 
 }
 
 *{
@@ -20,9 +22,19 @@ body{
     font-family: var(--roboto);
 }
 
+#particles-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none;
+}
+
 .titulo-principal{
-    font-family: var(--roboto-mono);
-    font-size: 32px;
+    font-family: var(--edu-qld-hand);
+    font-size: 35px;
 }
 
 .titulo-secundario{
@@ -67,8 +79,9 @@ body{
 }
 
 .parametro-titulo{
-    font-family: var(--roboto-mono);
-    font-size: 28px;
+    font-family: var(--edu-qld-hand);
+    font-size: 30px;
+    text-align: center;
 }
 
 .parametro-senha__titulo{
